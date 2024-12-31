@@ -1,0 +1,9 @@
+This project will register the pets that are avaialbe for adoption or hospitality for few days
+The visitora of the site who are concerned should register
+Then the member will declare if they like to provide a pet for adoption/hospitality or to receive
+
+we need the following tables:
+1. users (members)
+2. pets (pet for adoption/hospitality)
+3. pet-users (interesting of users to pets)
+

@@ -1,0 +1,40 @@
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    username TEXT NOT NULL,
+    hash TEXT NOT NULL,
+    area TEXT NOT NULL
+    );
+
+DROP TABLE pets;
+CREATE TABLE IF NOT EXISTS pets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    species TEXT NOT NULL,
+    breed  TEXT NOT NULL,
+    image_path TEXT NOT NULL,
+    image_file,
+    status DEFAULT 0,
+    user_id INTEGER NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE pet_users;
+CREATE TABLE IF NOT EXISTS pet_users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pet_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    status DEFAULT 0,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (pet_id) REFERENCES pets(id)
+);
+
+
+ALTER TABLE pets DROP COLUMN type;
+ALTER TABLE pets ADD COLUMN breed TEXT NOT NULL ;
+ALTER TABLE pets ADD COLUMN image_path TEXT DEFAULT '\static\images';
+ALTER TABLE pets ADD COLUMN image_file TEXT  ;
+ALTER TABLE pets ADD COLUMN user_id  NULL ;
+ALTER TABLE pets ADD COLUMN user_id  default 1 NOT NULL ;
+ALTER TABLE pets DROP COLUMN user_id;

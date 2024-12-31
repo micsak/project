@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+<h2 style="text-align:center">Pls give details of your pet</h2>
+<div class="row">
+  <div class="column">
+    <div class="pet">
+      <img src="{{ url_for('static', filename='images/1-pet.jpg') }}" alt="Jane" align="middle" style="width:30%" >
+      <div class="container">
+      </div>
+    </div>
+  </div>
+
+  <!--form-control mx-auto w-auto"-->
+    <div class="bbg-light text-dark">
+    <form action="/myoffers" method="post" enctype="multipart/form-data">
+        <alignfield>
+            <p>
+                <input autocomplete="off" autofocus  name="petname" placeholder="pet name" type="text" class="bg-light text-dark">
+            </p>
+            <p>
+                <select name="breed" id="breeds" class="bbg-light text-dark">
+                    <option value="Select Breed">Select Breed</option>
+                    <option value="dog">dog</option>
+                    <option value="cat">cat</option>
+                    <option value="bird">bird</option>
+                </select>
+            </p>
+            <p>
+                <input  name="species" placeholder="Species" type="text" class="bbg-light text-dark">
+            </p>
+            <p>
+                    <input type="file" name="file" class="form-control bg-info text-white">
+            </p>
+            <p>
+                <button  type="submit" class="form-control bg-info text-white">Submit</button>
+            </p>
+        </alignfield>
+    </form>
+    </div>
+{% endblock %}

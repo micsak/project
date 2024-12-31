@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+My Profile - Change password
+{% endblock %}
+
+{% block main %}
+
+<p>
+<h2>Change your password</h2>
+</p>
+<p>
+<br>
+<form action="/profile" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="oldPassword" placeholder="Old password" type="text">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" name="2password" placeholder="Enter again the Password" type="password">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Change Password</button>
+</form>
+</p>
+{% endblock %}

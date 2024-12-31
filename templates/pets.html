@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Pets
+{% endblock %}
+
+{% block main %}
+
+
+<h1 class="center">Our Pets </h1>
+
+    <table width="100%" border="2" height ="100" align="top" class="table" >
+        <thead>
+            <colgroup>
+                <col span="7">
+                <col span="4" style="visibility: collapse">
+              </colgroup>
+            <tr>
+                <th>Pet ID</th>
+                <th>Pet name</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Photo</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pets in pets %}
+            <tr onclick="selectValue(this)">
+                <td>{{ pets.id }}</td>
+                <td>{{ pets.name }}</td>
+                <td>{{ pets.species }}</td>
+                <td>{{ pets.breed }}</td>
+                {% if pets.status == 0 %}
+                    <td>  Available</td>
+                {% else %}
+                    <td>  Not available</td>
+                {% endif %}
+
+                {% if a == "mypets" %}
+                    <td> {{ a }} {{ pets.type }} </td>
+                {% else %}
+                    <td>  {{ pets.date }}</td>
+                {% endif %}
+
+
+
+                <td>
+                    {% if pets.image_path and pets.image_file %}
+                        <a href="{{ url_for('photo', pet_id=pets.id) }}">
+                            <img src="{{ pets.image_path + pets.image_file }}"  alt="Image" style="width:100px;height:120px; object-fit: cover;" >
+                        </a>
+                    {% else %}
+                      No image available
+                    {% endif %}
+                  </td>
+                  <td class="table_td_0"> </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <form  id="requestForm" action="/requests" method="post" enctype="multipart/form-data">
+        <alignfield>
+            <input type="hidden" id="selectedValue" name="selectedValue">
+                <button  type="submit" class="form-control bg-info text-white" onclick="return validateSelection()"">Request</button>
+            </p>
+        </alignfield>
+    </form>
+    <form action="/offer" method="post" enctype="multipart/form-data">
+        <alignfield>
+
+                <button  type="offer" class="form-control bg-info text-white" >Make an offer</button>
+            </p>
+        </alignfield>
+    </form>
+
+
+{% endblock %}

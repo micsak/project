@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ mypets.name }}
+{% endblock %}
+
+{% block main %}
+
+<p>{{ mypets.image_path + mypets.image_file }}</p>
+
+
+<img src="/{{ mypets.image_path + mypets.image_file }}" alt="Image" style="width:100px;height:120px; object-fit: cover;">
+
+
+{% endblock %}

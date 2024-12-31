@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Pets
+{% endblock %}
+
+{% block main %}
+<h1 class="center">My Pets </h1>
+
+    <table width="100%" border="2" height ="100" align="top" >
+        <colgroup>
+            <col span="0">
+            <col span="1" style="visibility: collapse">
+            <col span="4" >
+            <col span="1" style="visibility: collapse">
+            <col span="1" >
+            <col span="1" style="visibility: collapse">
+            <col span="1" >
+          </colgroup>
+        <thead>
+            <tr >
+                <th>Pet ID</th>
+                <th class="collapse_table"></th>
+                <th>Pet name</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Status</th>
+                <th class="collapse_table"></th>
+                <th>Photo</th>
+                <th class="collapse_table"></th>
+                <th>user id</th>
+                <th>Offer</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for mypets in mypets %}
+            <tr onclick="selectValue(this)" style="background-color: white;">
+                <td >{{ mypets.id}}</td>
+                <td class="collapse_table"></td>
+                <td>{{ mypets.name }}</td>
+                <td>{{ mypets.species }}</td>
+
+                <td>{{ mypets.breed }}</td>
+                {% if mypets.status == 0 %}
+                    <td > Available</td>
+                {% else %}
+                    <td > Not avaialble</td>
+                {% endif %}
+                    <td class="collapse_table"> </td>
+                <td>
+                    {% if mypets.image_path and mypets.image_file %}
+                        <a href="{{ url_for('photo', pet_id=mypets.id) }}">
+                            <img src="{{ mypets.image_path + mypets.image_file }}"  alt="Image" style="width:100px;height:120px; object-fit: cover;" >
+                        </a>
+                    {% else %}
+                      No image available
+                    {% endif %}
+                <td class="collapse_table"></td>
+                <td>{{ mypets.user_id}}</td>
+                <td class="collapse_table">Offer</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <h1 class="center">My Pet requests </h1>
+
+    <table width="100%" border="2" height ="100" align="top" >
+        <colgroup>
+            <col span="8">
+            <col span="3" style="visibility: collapse">
+          </colgroup>
+
+        <thead>
+            <tr>
+                <th>Pet ID</th>
+                <th>Pets ID</th>
+                <th>Pet name</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Status</th>
+                <th>type</th>
+                <th>Photo</th>
+                <th>pet user id</th>
+                <th>pets user id</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for mypetrequest in mypetrequest %}
+            <tr onclick="selectValue(this)" style="background-color: {% if mypetrequest.type == 'O' %}white{% else %}Violet{% endif %};">
+                <td>{{ mypetrequest.pet_id}}</td>
+                <td>{{ mypetrequest.id }}</td>
+                <td>{{ mypetrequest.name }}</td>
+                <td>{{ mypetrequest.species }}</td>
+
+                <td>{{ mypetrequest.breed }}</td>
+                {% if mypetrequest.status == 0 %}
+                    <td > Available</td>
+                {% else %}
+                    <td > Not avaialble</td>
+                {% endif %}
+
+
+                {% if mypetrequest.type == 'O' %}
+                    <td> Offer</td>
+                {% else %}
+                    <td> Request</td>
+                {% endif %}
+
+                <td>
+                    {% if mypetrequest.image_path and mypetrequest.image_file %}
+                        <a href="{{ url_for('photo', pet_id=mypetrequest.id) }}">
+                            <img src="{{ mypetrequest.image_path + mypetrequest.image_file }}"  alt="Image" style="width:100px;height:120px; object-fit: cover;" >
+                        </a>
+                    {% else %}
+                      No image available
+                    {% endif %}
+                <td>{{ mypetrequest.pet_user_id}}</td>
+                <td>{{ mypetrequest.pets_user_id}}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+<br>
+    <form  id="requestForm" action="/remove" method="post" enctype="multipart/form-data">
+        <alignfield>
+                <input type="hidden" id="selectedValue" name="selectedValue">
+                <input type="hidden" id="rowtype" name="rowtype" value="">
+                <input type="hidden" id="pets_user_id" name="pets_user_id" value="">
+                <input type="hidden" id="pet_user_id" name="pet_user_id" value="">
+                <input type="hidden" id="offer" name="offer" value="">
+                <button  type="submit" class="form-control bg-info text-white" onclick="return validateSelection()"">Remove pet</button>
+            </p>
+        </alignfield>
+    </form>
+<script>
+    let pets_user_id = document.querySelector('pets_user_id');
+    let pet_user_id = document.querySelector('pet_user_id');
+    let id = document.querySelector('id');
+    console.log(pets_user_id);
+    console.log(pet_user_id);
+    console.log("This is a debug message");
+
+</script>
+
+
+{% endblock %}

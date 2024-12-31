@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+
+<!--
+{
+    "background": "string",
+    "style": "string",
+    "text": [
+      "string"
+    ],
+    "layout": "string",
+    "font": "string",
+    "extension": "string",
+    "redirect": true
+}
+-->
+<H1 class="center">
+    Error number : {{ top  }}.  {{ bottom  }}
+</H1>
+<br>
+<img alt="{{ top }}" class="border img-fluid" src="https://api.memegen.link/images/doge/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg? title="{{ top }} >
+
+
+{% endblock %}

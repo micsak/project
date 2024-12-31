@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block main %}
+
+<div class="about-section">
+    <h2>What we like to achieve</h2>
+    <p>Provide the opportunity to offer pets for adoption or hospitality</p>
+    <p>If you want to get a pet for adoption here is the right site</p>
+    <p>If you need someone to take care of your pet for few days or during your holidays here is the right site</p>
+  </div>
+
+  <div class="about-section-register">
+    <h2>
+
+      <a href="register"  class="about-section-register" style="height: 100px; border: 0px solid black;padding-top: 0px;" >Register today</a>
+  </h2>
+  </div>
+
+  <h2 style="text-align:center">Our pets</h2>
+  <div class="row">
+    <div class="column">
+      <div class="pet">
+        <img src="{{ url_for('static', filename='images/1-pet.jpg') }}" alt="Jane" align="middle" style="width:30%" >
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="pet">
+        <img src="{{ url_for('static', filename='images/2-pet.jpg') }}" alt="Jane" align="middle" style="width:30%" >
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="pet">
+        <img src="{{ url_for('static', filename='images/3-pet.jpg') }}" alt="Jane" align="middle" style="width:30%" >
+      </div>
+    </div>
+  </div>
+{% endblock %}
